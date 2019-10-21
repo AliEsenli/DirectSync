@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DirectSync</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/sidemenu.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+</head>
+
+<body id="body">
+    <header>
+        <div class="page-sidebar custom-scroll ps ps--active-y" id="sidebar">
+            <div class="sidebar-header"><a class="sidebar-brand" asp-controller="App" asp-action="Index">DirectSync</a></div>
+            <ul class="sidebar-menu metismenu">
+                <li class="heading"><span>DirectSync</span></li>
+                <li class="mm-active">
+                    <ul>
+                        <li><a class="" asp-controller="App" asp-action="Index">Dashboard</a></li>
+                    </ul>
+                    <ul class="">
+                        <li><a class="" asp-controller="App" asp-action="Connection">API Connections</a></li>
+                    </ul>
+                </li>
+          
+                <li class="heading"><span>Help</span></li>
+
+                <li>
+                    <ul class="nav-2-level mm-collapse">
+                        <li><a href="#">Binance Connection</a></li>
+                        <li><a href="#">Bittrex Connection</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <nav class="navbar navbar-expand navbar-light fixed-top header pr-4">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link navbar-icon sidebar-toggler" id="sidebar-toggler" href="#">
+                        <span class="navbar-toggler-icon"></span>
+                    </a>
+                </li>
+            </ul>
+            <partial name="_LoginPartial" />
+        </nav>
+    </header>
+
+    <div class="content-area">
+        <partial name="_CookieConsentPartial" />
+        <main id="main" role="main" class="pb-3">
+            <div class="page-content">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    @*
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - Login - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    *@
+
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/js/sidemenutoggle.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
