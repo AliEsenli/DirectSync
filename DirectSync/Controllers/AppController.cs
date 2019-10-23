@@ -35,8 +35,6 @@ namespace DirectSync.Controllers
                 .Include(u => u.UserKeys)
                 .FirstOrDefaultAsync(u => u.Id == user.Id);
 
-            //var _private_api = new CCXT.NET.Binance.Private.PrivateApi("YzV1BUo6J0Yib7pRjSElprPM1YOWDvZsOadtXcAgRNzTz5P6u2maKJKQGIZGbkz8", "L4zTKrpBv2EY9zWOG7ZPGcVkMymsvpT7Gp1Tzs7PyI5Z54z1vBWeuuX8pqNxl8ZL");
-
             // Get Users All Exchange Connections
             var userExchangeConnectionList = realUser.UserKeys.ToList();
 
