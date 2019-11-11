@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DirectSync</title>
-
+    <title>DirectSync - Cryptocurrency tracker</title>
+    <link rel="shortcut icon" href="~/img/icon.png" />
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 </head>
+
+<partial name="_CookieConsentPartial" />
+
 <body>
     <header>
         <div class="landing">
@@ -40,8 +43,6 @@
                     </nav>
                 </div>
             </div>
-
-            <partial name="_CookieConsentPartial" />
 
             <div class="d-flex h-100" style="margin-top: -70px">
                 <div id="maintext" class="container justify-content-center align-self-center ">
