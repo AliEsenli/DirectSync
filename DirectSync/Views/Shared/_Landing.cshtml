@@ -7,7 +7,7 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css"/>
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -22,14 +22,14 @@
     <header>
         <div class="landing">
             <div class="box-shadow">
-                <div class="container">
+                <div class="container pt-2 pb-2">
                     <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-dark">
                         <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DirectSync</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <div class="navbar-collapse collapse flex-sm-row-reverse">
                             <partial name="_LoginPartial" />
                             <ul class="navbar-nav flex-grow-1">
                                 <li class="nav-item">
@@ -72,11 +72,11 @@
     </div>
 
     @*
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - Login - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>    
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2019 - Login - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
     *@
 
     <environment include="Development">
