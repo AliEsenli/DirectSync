@@ -89,17 +89,18 @@ namespace DirectSync.Controllers
                         // If Asset is supported create new UserAsset Object
                         if (userHasAsset == null && asset != null)
                         {
-                            var userAsset = new UserAsset { 
+                            var userAsset = new UserAsset
+                            {
                                 UserId = user.Id,
                                 ExchangeId = exchange.ExchangeId,
                                 AssetId = asset.AssetId,
                                 Amount = (double)balance.free
-                                };
+                            };
 
                             // Add to New User Assets List
                             newUserAssets.Add(userAsset);
                         }
-                        else if(userHasAsset != null)
+                        else if (userHasAsset != null)
                         {
                             // Just update the Amount
                             userHasAsset.Amount = (double)balance.total;
@@ -116,11 +117,13 @@ namespace DirectSync.Controllers
                     _context.RemoveRange(removeUserAssets);
                     // Save All Changes
                     await _context.SaveChangesAsync();
-                  
+
                 }
             }
-            
-            var viewModel = new AppViewModel(realUser);
+
+            var btcPrice = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == "BTC");
+
+            var viewModel = new AppViewModel(realUser, btcPrice);
             return View(viewModel);
         }
 
@@ -165,7 +168,8 @@ namespace DirectSync.Controllers
         public async Task<IActionResult> Connection(ConnectionViewModel model)
         {
             model.UserKey.User = await _userManager.FindByEmailAsync(User.Identity.Name);
-            var newKey = new UserKey {
+            var newKey = new UserKey
+            {
                 ExchangeId = model.UserKey.ExchangeId,
                 PublicKey = model.UserKey.PublicKey,
                 PrivateKey = model.UserKey.PrivateKey,
