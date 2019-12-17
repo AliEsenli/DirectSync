@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectSync", "DirectSync\DirectSync.csproj", "{EA327FEE-D6C4-45D2-911B-F658337EE4B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ccxt.net", "..\..\..\Desktop\ccxt.net-master\ccxt.net-master\src\ccxt.net.csproj", "{3DBD821F-D30B-4803-9E33-0B99B3AC9EDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoExchange.Net", "..\..\..\Downloads\CryptoExchange.Net-master\CryptoExchange.Net-master\CryptoExchange.Net\CryptoExchange.Net.csproj", "{4B5E6F4E-3FE3-4AE1-8A10-DB7C886CA460}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebJobsSDKSample", "..\WebJobsSDKSample\WebJobsSDKSample\WebJobsSDKSample.csproj", "{F74E2512-1924-4298-A8A3-6C3351B350BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Binance.Net", "..\..\..\Downloads\Binance.Net-master\Binance.Net-master\Binance.Net\Binance.Net.csproj", "{FBC8A598-6278-4097-AEEE-23E94CBAB1C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{EA327FEE-D6C4-45D2-911B-F658337EE4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA327FEE-D6C4-45D2-911B-F658337EE4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA327FEE-D6C4-45D2-911B-F658337EE4B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DBD821F-D30B-4803-9E33-0B99B3AC9EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DBD821F-D30B-4803-9E33-0B99B3AC9EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DBD821F-D30B-4803-9E33-0B99B3AC9EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DBD821F-D30B-4803-9E33-0B99B3AC9EDB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F74E2512-1924-4298-A8A3-6C3351B350BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F74E2512-1924-4298-A8A3-6C3351B350BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F74E2512-1924-4298-A8A3-6C3351B350BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F74E2512-1924-4298-A8A3-6C3351B350BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B5E6F4E-3FE3-4AE1-8A10-DB7C886CA460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B5E6F4E-3FE3-4AE1-8A10-DB7C886CA460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B5E6F4E-3FE3-4AE1-8A10-DB7C886CA460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B5E6F4E-3FE3-4AE1-8A10-DB7C886CA460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC8A598-6278-4097-AEEE-23E94CBAB1C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC8A598-6278-4097-AEEE-23E94CBAB1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC8A598-6278-4097-AEEE-23E94CBAB1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC8A598-6278-4097-AEEE-23E94CBAB1C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

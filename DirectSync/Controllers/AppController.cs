@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DirectSync.Data;
+using System;
+using Binance.Net;
+using CryptoExchange.Net.Authentication;
+using Binance.Net.Objects;
 
 namespace DirectSync.Controllers
 {
@@ -51,21 +55,27 @@ namespace DirectSync.Controllers
                     // Get Users private API KEY
                     var privateKey = exchangeConnection.PrivateKey;
 
-                    CCXT.NET.Binance.Private.PrivateApi _private_api = new CCXT.NET.Binance.Private.PrivateApi("", "");
-                    //CCXT.NET.Bittrex.Private.PrivateApi _private_api2 = new CCXT.NET.Bittrex.Private.PrivateApi("", "");
                     switch (exchange.ExchangeId)
                     {
                         // 1. Binance API Call
                         case 1:
-                            _private_api = new CCXT.NET.Binance.Private.PrivateApi(publicKey, privateKey);
+                            //_private_api = new CCXT.NET.Binance.Private.PrivateApi(publicKey, privateKey);
+                            BinanceClient.SetDefaultOptions(new BinanceClientOptions
+                            {
+                                ApiCredentials = new ApiCredentials(publicKey, privateKey)
+                            });
                             break;
                         // Integrate More Exchanges Here... For example Bittrex  
                         case 2:
-                            var _private_api2 = new CCXT.NET.Bittrex.Private.PrivateApi(publicKey, privateKey);
+                            //
                             break;
                     }
-                    // Fetch User Balances using CCXT.NET Library
-                    var _balances = await _private_api.FetchBalances();
+
+
+                    BinanceClient net = new BinanceClient();
+
+                    // Fetch User Balances using CryptoExchange.NET Library
+                    var info = await net.GetAccountInfoAsync();
 
                     // Create some structure for filtering User Assets
                     var newUserAssets = new List<UserAsset>();
@@ -73,14 +83,17 @@ namespace DirectSync.Controllers
                     var currentUserAssets = new List<UserAsset>();
                     var userHasAsset = new UserAsset();
 
-                    foreach (var balance in _balances.result)
+
+                    foreach (var balance in info.Data.Balances.Where(b => (double)b.Total > 0.0001))
                     {
                         // Filter Current User Assets
-                        var filtered = realUser.UserAssets.Where(i => balance.currency.Contains(i.Asset.AssetShortName));
+                        var filtered = realUser.UserAssets.Where(i => balance.Asset.Contains(i.Asset.AssetShortName));
                         currentUserAssets.AddRange(filtered);
 
+
+
                         // Check if Asset is being supported in Applications Database 
-                        var asset = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == balance.currency);
+                        var asset = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == balance.Asset);
                         if (asset != null)
                         {
                             userHasAsset = realUser.UserAssets.FirstOrDefault(ua => ua.AssetId == asset.AssetId);
@@ -94,7 +107,7 @@ namespace DirectSync.Controllers
                                 UserId = user.Id,
                                 ExchangeId = exchange.ExchangeId,
                                 AssetId = asset.AssetId,
-                                Amount = (double)balance.free
+                                Amount = (double)balance.Free
                             };
 
                             // Add to New User Assets List
@@ -103,9 +116,12 @@ namespace DirectSync.Controllers
                         else if (userHasAsset != null)
                         {
                             // Just update the Amount
-                            userHasAsset.Amount = (double)balance.total;
+                            userHasAsset.Amount = (double)balance.Total;
+                            await _context.SaveChangesAsync();
                         }
                     }
+
+
 
                     // Preparing the Assets which should be deleted by comparing two Lists
                     var deleteAssets = realUser.UserAssets.ToList().Except(currentUserAssets).ToList();
@@ -120,6 +136,7 @@ namespace DirectSync.Controllers
 
                 }
             }
+
 
             var btcPrice = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == "BTC");
 

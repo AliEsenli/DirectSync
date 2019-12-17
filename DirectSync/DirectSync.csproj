@@ -18,12 +18,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\ccxt.net-master\ccxt.net-master\src\ccxt.net.csproj" />
+    <ProjectReference Include="..\..\..\..\Downloads\Binance.Net-master\Binance.Net-master\Binance.Net\Binance.Net.csproj" />
+    <ProjectReference Include="..\..\..\..\Downloads\CryptoExchange.Net-master\CryptoExchange.Net-master\CryptoExchange.Net\CryptoExchange.Net.csproj" />
   </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4css_4bootstrap_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
