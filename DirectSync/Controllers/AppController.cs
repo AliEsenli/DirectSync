@@ -6,12 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using DirectSync.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using DirectSync.Data;
-using System;
 using Binance.Net;
 using CryptoExchange.Net.Authentication;
 using Binance.Net.Objects;
+using Microsoft.EntityFrameworkCore;
 
 namespace DirectSync.Controllers
 {
@@ -72,10 +71,12 @@ namespace DirectSync.Controllers
                     }
 
 
-                    BinanceClient net = new BinanceClient();
+                    BinanceClient binanceClient = new BinanceClient();
 
                     // Fetch User Balances using CryptoExchange.NET Library
-                    var info = await net.GetAccountInfoAsync();
+                    var info = await binanceClient.GetAccountInfoAsync();
+
+                    binanceClient.Dispose();
 
                     // Create some structure for filtering User Assets
                     var newUserAssets = new List<UserAsset>();

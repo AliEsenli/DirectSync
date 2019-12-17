@@ -17,7 +17,6 @@ namespace DirectSync.Controllers
             this._userManager = userManager;
         }
 
-        //[Authorize(Roles = "a")]
         public IActionResult Index()
         {
             return View();
