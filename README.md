@@ -2,4 +2,4 @@
 Cryptocurrency portfolio tracking platform
 
 ## Requirements
-* [CCXT.NET]("https://github.com/lisa3907/ccxt.net")
+* [CryptoExchange]("https://github.com/JKorf/CryptoExchange.Net")
