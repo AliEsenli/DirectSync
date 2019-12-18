@@ -91,8 +91,6 @@ namespace DirectSync.Controllers
                         var filtered = realUser.UserAssets.Where(i => balance.Asset.Contains(i.Asset.AssetShortName));
                         currentUserAssets.AddRange(filtered);
 
-
-
                         // Check if Asset is being supported in Applications Database 
                         var asset = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == balance.Asset);
                         if (asset != null)
@@ -121,7 +119,6 @@ namespace DirectSync.Controllers
                             await _context.SaveChangesAsync();
                         }
                     }
-
 
 
                     // Preparing the Assets which should be deleted by comparing two Lists
