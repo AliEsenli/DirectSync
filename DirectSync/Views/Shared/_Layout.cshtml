@@ -23,43 +23,43 @@
 </head>
 
 <body id="body">
-        <div class="page-sidebar custom-scroll ps ps--active-y" id="sidebar">
-            <div class="sidebar-header"><a class="sidebar-brand" asp-controller="App" asp-action="Index">DirectSync</a></div>
-            <ul class="sidebar-menu metismenu">
-                <li class="heading"><span>DirectSync</span></li>
-                <li class="mm-active">
-                    <ul>
-                        <li><a class="" asp-controller="App" asp-action="Index">Dashboard</a></li>
-                    </ul>
-                    <ul class="">
-                        <li><a class="" asp-controller="App" asp-action="Connection">API Connections</a></li>
-                    </ul>
-                </li>
+    <div class="page-sidebar custom-scroll ps ps--active-y" id="sidebar">
+        <div class="sidebar-header"><a class="sidebar-brand" asp-controller="App" asp-action="Index">DirectSync</a></div>
+        <ul class="sidebar-menu metismenu">
+            <li class="heading"><span>DirectSync</span></li>
+            <li class="mm-active">
+                <ul>
+                    <li><a class="" asp-controller="App" asp-action="Index">Dashboard</a></li>
+                </ul>
+                <ul class="">
+                    <li><a class="" asp-controller="App" asp-action="Connection">API Connections</a></li>
+                </ul>
+            </li>
 
-                <li class="heading"><span>Help</span></li>
+            <li class="heading"><span>Help</span></li>
 
-                <li>
-                    <ul class="nav-2-level mm-collapse">
-                        <li><a href="#">Binance Connection</a></li>
-                        <li><a href="#">Bittrex Connection</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+            <li>
+                <ul class="nav-2-level mm-collapse">
+                    <li><a href="#">Binance Connection</a></li>
+                    <li><a href="#">Bittrex Connection</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
-        <nav class="navbar navbar-expand navbar-light fixed-top header pr-4">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link navbar-icon sidebar-toggler" id="sidebar-toggler" href="#">
-                        <span class="navbar-toggler-icon"></span>
-                    </a>
-                </li>
-            </ul>
-            <partial name="_LoginPartial" />
-        </nav>
+    <nav class="navbar navbar-expand navbar-light fixed-top header pr-4">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link navbar-icon sidebar-toggler" id="sidebar-toggler" href="#">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+            </li>
+        </ul>
+        <partial name="_LoginPartial" />
+    </nav>
 
-    <div class="content-area">
+    <div class="content-area" id="content-area">
         <partial name="_CookieConsentPartial" />
         <main id="main" role="main" class="pb-3">
             <div class="page-content">
@@ -71,7 +71,7 @@
     @*
         <footer class="border-top footer text-muted">
             <div class="container">
-                &copy; 2019 - Login - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                &copy; 2019 - DirectSync - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
     *@
@@ -100,4 +100,5 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
