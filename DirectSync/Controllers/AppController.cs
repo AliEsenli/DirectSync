@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DirectSync.Controllers
 {
+    [Authorize]
     public class AppController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,7 +27,6 @@ namespace DirectSync.Controllers
         }
 
 
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             // Get User Object using UserManager
@@ -120,7 +120,6 @@ namespace DirectSync.Controllers
                         }
                     }
 
-
                     // Preparing the Assets which should be deleted by comparing two Lists
                     var deleteAssets = realUser.UserAssets.ToList().Except(currentUserAssets).ToList();
                     removeUserAssets.AddRange(deleteAssets);
@@ -135,14 +134,12 @@ namespace DirectSync.Controllers
                 }
             }
 
-
             var btcPrice = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == "BTC");
 
             var viewModel = new AppViewModel(realUser, btcPrice);
             return View(viewModel);
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Connection()
         {
@@ -156,20 +153,20 @@ namespace DirectSync.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> ConnectionDel(ConnectionViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConnectionDel([FromForm]UserKey userKey)
         {
-            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var exchangeId = userKey.ExchangeId;
 
-            var exchangeId = model.UserKey.ExchangeId;
             var realUser = await _context.Users
                 .Include(u => u.UserKeys)
                 .Include(u => u.UserAssets)
-                .FirstOrDefaultAsync(u => u.Id == user.Id);
+                .FirstOrDefaultAsync(u => u.Id == currentUser.Id);
 
-            var deleteApiKey = realUser.UserKeys.FirstOrDefault(uk => uk.ExchangeId == model.UserKey.ExchangeId);
-            var deleteAssets = realUser.UserAssets.Where(ua => ua.ExchangeId == model.UserKey.ExchangeId);
+            var deleteApiKey = realUser.UserKeys.FirstOrDefault(uk => uk.ExchangeId == exchangeId);
+            var deleteAssets = realUser.UserAssets.Where(ua => ua.ExchangeId == exchangeId);
 
             _context.RemoveRange(deleteAssets);
             _context.Remove(deleteApiKey);
@@ -180,16 +177,17 @@ namespace DirectSync.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Connection(ConnectionViewModel model)
+        public async Task<IActionResult> Connection([FromForm]UserKey userKey)
         {
-            model.UserKey.User = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+
             var newKey = new UserKey
             {
-                ExchangeId = model.UserKey.ExchangeId,
-                PublicKey = model.UserKey.PublicKey,
-                PrivateKey = model.UserKey.PrivateKey,
-                UserId = model.UserKey.User.Id,
-                User = model.UserKey.User
+                ExchangeId = userKey.ExchangeId,
+                PublicKey = userKey.PublicKey,
+                PrivateKey = userKey.PrivateKey,
+                UserId = currentUser.Id,
+                User = currentUser
             };
 
             await _context.AddAsync(newKey);
