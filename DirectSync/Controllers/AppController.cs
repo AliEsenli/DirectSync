@@ -89,7 +89,9 @@ namespace DirectSync.Controllers
                     {
                         // Filter Current User Assets
                         var filtered = realUser.UserAssets.Where(i => balance.Asset.Contains(i.Asset.AssetShortName));
-                        currentUserAssets.AddRange(filtered);
+                        var filtered3 = realUser.UserAssets.Where(ua => balance.Asset == ua.Asset.AssetShortName);
+
+                        currentUserAssets.AddRange(filtered3);
 
                         // Check if Asset is being supported in Applications Database 
                         var asset = await _context.Assets.FirstOrDefaultAsync(a => a.AssetShortName == balance.Asset);
